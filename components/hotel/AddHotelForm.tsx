@@ -52,6 +52,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import AddRoomForm from "@/components/room/AddRoomForm";
+import { Separator } from "@/components/ui/separator";
+import RoomCard from "../room/RoomCard";
 
 interface AddHotelFormProps {
   hotel: HotelWithRooms | null;
@@ -247,6 +249,10 @@ const AddHotelForm = ({ hotel }: AddHotelFormProps) => {
       .finally(() => {
         setImageIsDeleting(false);
       });
+  };
+
+  const handleDialogueOpen = () => {
+    setOpen((prev) => !prev);
   };
 
   return (
@@ -733,7 +739,11 @@ const AddHotelForm = ({ hotel }: AddHotelFormProps) => {
                 {hotel && (
                   <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger>
-                      <Button type="button" variant="outline" className="max-w-[150px]">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="max-w-[150px]"
+                      >
                         <Plus className="mr-2 h-4 w-4" /> Add Room{" "}
                       </Button>
                     </DialogTrigger>
@@ -744,7 +754,10 @@ const AddHotelForm = ({ hotel }: AddHotelFormProps) => {
                           Add details about the room in your hotel.
                         </DialogDescription>
                       </DialogHeader>
-                      <AddRoomForm />
+                      <AddRoomForm
+                        hotel={hotel}
+                        handleDialogueOpen={handleDialogueOpen}
+                      />
                     </DialogContent>
                   </Dialog>
                 )}
@@ -775,6 +788,19 @@ const AddHotelForm = ({ hotel }: AddHotelFormProps) => {
                   </Button>
                 )}
               </div>
+              {hotel && !!hotel.rooms.length && (
+                <div>
+                  <Separator />
+                  <h3 className="text-lg font-semibold my-4">Hotel Rooms</h3>
+                  <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
+                    {hotel.rooms.map((room) => {
+                      return (
+                        <RoomCard key={room.id} hotel={hotel} room={room} />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </form>

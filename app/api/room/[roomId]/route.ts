@@ -4,56 +4,56 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { hotelId: string } }
+  { params }: { params: { roomId: string } }
 ) {
   try {
     const body = await req.json();
     const { userId } = await auth();
-    const hotelParams = await params;
+    const roomParams = await params;
 
-    if (!hotelParams.hotelId) {
-      return new NextResponse("Hotel ID is required", { status: 400 });
+    if (!roomParams.roomId) {
+      return new NextResponse("Room ID is required", { status: 400 });
     }
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const hotel = await prismadb.hotel.update({
-      where: { id: hotelParams.hotelId },
+    const room = await prismadb.room.update({
+      where: { id: roomParams.roomId },
       data: { ...body },
     });
 
-    return NextResponse.json(hotel);
+    return NextResponse.json(room);
   } catch (error) {
-    console.log("Error at /api/hotel UPDATE", error);
+    console.log("Error at /api/room UPDATE", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { hotelId: string } }
+  { params }: { params: { roomId: string } }
 ) {
   try {
     const { userId } = await auth();
-    const hotelId = await params.hotelId;
+    const roomParams = await params;
 
-    if (!hotelId) {
-      return new NextResponse("Hotel ID is required", { status: 400 });
+    if (!roomParams.roomId) {
+      return new NextResponse("Room ID is required", { status: 400 });
     }
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const hotel = await prismadb.hotel.delete({
-      where: { id: hotelId },
+    const room = await prismadb.room.delete({
+      where: { id: roomParams.roomId },
     });
 
-    return NextResponse.json(hotel);
+    return NextResponse.json(room);
   } catch (error) {
-    console.log("Error at /api/hotel DELETE", error);
+    console.log("Error at /api/room DELETE", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
