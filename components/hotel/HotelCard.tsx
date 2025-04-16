@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import AmenityItem from "../AmenityItem";
-import { Dumbbell, MapPin, Waves } from "lucide-react";
+import { Dumbbell, MapPin } from "lucide-react";
 import useLocation from "@/hooks/useLocation";
 import { Button } from "../ui/button";
+import { FaSwimmer } from "react-icons/fa";
 
 const HotelCard = ({ hotel }: { hotel: HotelWithRooms }) => {
   const router = useRouter();
@@ -46,7 +47,7 @@ const HotelCard = ({ hotel }: { hotel: HotelWithRooms }) => {
             </AmenityItem>
             {hotel.swimmingPool && (
               <AmenityItem>
-                <Waves className="w-4 h-4" /> Pool
+                <FaSwimmer size={18} /> Pool
               </AmenityItem>
             )}{" "}
             {hotel.gym && (
@@ -66,7 +67,11 @@ const HotelCard = ({ hotel }: { hotel: HotelWithRooms }) => {
                 </>
               )}
             </div>
-            {isMyHotels &&  <Button onClick={() => router.push(`/hotel/${hotel.id}`)}>Edit</Button>}
+            {isMyHotels && (
+              <Button onClick={() => router.push(`/hotel/${hotel.id}`)}>
+                Edit
+              </Button>
+            )}
           </div>
         </div>
       </div>
