@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
@@ -68,7 +68,7 @@ model Room {
   airCondition   Boolean @default(false)
   soundProofed   Boolean @default(false)
 
-  Hotel   Hotel?  @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  Hotel   Hotel? @relation(fields: [hotelId], references: [id], onDelete: Cascade)
   hotelId String
 
   Booking Booking[]
@@ -77,24 +77,24 @@ model Room {
 }
 
 model Booking {
-  id        String   @id @default(uuid())
-  userName  String
-  userEmail String
-  userId    String
-  hotelId   String
-  roomId    String
-  hotelOwnerId String
-  startDate DateTime
-  endDate   DateTime
+  id                String   @id @default(uuid())
+  userName          String
+  userEmail         String
+  userId            String
+  hotelId           String
+  roomId            String
+  hotelOwnerId      String
+  startDate         DateTime
+  endDate           DateTime
   breakfastIncluded Boolean
-  currency String
-  totalPrice Int
-  paymentStatus Boolean @default(false)
-  paymentIntentId String @unique
-  bookedAt DateTime @default(now())
+  currency          String
+  totalPrice        Int
+  paymentStatus     Boolean  @default(false)
+  paymentIntentId   String   @unique
+  bookedAt          DateTime @default(now())
 
-  Hotel     Hotel?    @relation(fields: [hotelId], references: [id])
-  Room      Room?     @relation(fields: [roomId], references: [id])
+  Hotel Hotel? @relation(fields: [hotelId], references: [id])
+  Room  Room?  @relation(fields: [roomId], references: [id])
 
   @@index([hotelId])
   @@index([roomId])

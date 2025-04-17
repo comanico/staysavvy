@@ -35,7 +35,28 @@ export async function POST(request: Request) {
   }
 
   if (foundBooking && payment_intent_id) {
+    const current_intent = await stripe.paymentIntents.retrieve(
+      payment_intent_id
+    );
+    if (current_intent) {
+      const updated_intent = await stripe.paymentIntents.update(
+        payment_intent_id,
+        {
+          amount: booking.totalPrice * 100,
+        }
+      );
 
+      const res = await prismadb.booking.update({
+        where: { paymentIntentId: payment_intent_id, userId: user.id },
+        data: bookingData,
+      });
+
+      if (!res) {
+        return NextResponse.error();
+      }
+
+      return NextResponse.json({ paymentIntent: updated_intent });
+    }
   } else {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: booking.totalPrice * 100,
@@ -44,7 +65,7 @@ export async function POST(request: Request) {
         enabled: true,
       },
     });
-    bookingData.payment_intent_id = paymentIntent.id;
+    bookingData.paymentIntentId = paymentIntent.id;
     await prismadb.booking.create({
       data: bookingData,
     });
