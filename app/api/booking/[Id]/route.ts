@@ -3,7 +3,6 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
   { params }: { params: { Id: string } }
 ) {
   try {
