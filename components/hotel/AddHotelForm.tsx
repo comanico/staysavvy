@@ -16,7 +16,7 @@ import {
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Checkbox } from "../ui/checkbox";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { UploadButton } from "../uploadthing";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
@@ -218,6 +218,7 @@ const AddHotelForm = ({ hotel }: AddHotelFormProps) => {
       });
       router.push("/hotel/new");
     } catch (error: any) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       console.log(error);
       toast({
         variant: "destructive",
@@ -500,7 +501,7 @@ const AddHotelForm = ({ hotel }: AddHotelFormProps) => {
               <FormField
                 control={form.control}
                 name="image"
-                render={({ field }) => (
+                render={({}) => (
                   <FormItem className="flex flex-col space-y-3">
                     <FormLabel>Upload A Hotel Image *</FormLabel>
                     <FormDescription>

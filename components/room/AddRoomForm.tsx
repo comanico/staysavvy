@@ -126,7 +126,7 @@ const AddRoomForm = ({ hotel, room, handleDialogueOpen }: AddRoomFormProps) => {
     if (hotel && room) {
       axios
         .patch(`/api/room/${room.id}`, values)
-        .then((res) => {
+        .then(() => {
           toast({
             variant: "success",
             description: "🎆Room Updated!",
@@ -145,8 +145,8 @@ const AddRoomForm = ({ hotel, room, handleDialogueOpen }: AddRoomFormProps) => {
         });
     } else {
       axios
-        .post("/api/room", {...values, hotelId: hotel?.id})
-        .then((res) => {
+        .post("/api/room", { ...values, hotelId: hotel?.id })
+        .then(() => {
           toast({
             variant: "success",
             description: "🎆Room created",
@@ -384,7 +384,7 @@ const AddRoomForm = ({ hotel, room, handleDialogueOpen }: AddRoomFormProps) => {
           <FormField
             control={form.control}
             name="image"
-            render={({ field }) => (
+            render={({}) => (
               <FormItem className="flex flex-col space-y-3">
                 <FormLabel>Upload A Room Image *</FormLabel>
                 <FormDescription>Upload an image of your room.</FormDescription>
@@ -557,7 +557,12 @@ const AddRoomForm = ({ hotel, room, handleDialogueOpen }: AddRoomFormProps) => {
           </div>
           <div className="pt-4 pb-2">
             {room ? (
-              <Button onClick={form.handleSubmit(onSubmit)} type="button" className="max-w-[150px]" disabled={isLoading}>
+              <Button
+                onClick={form.handleSubmit(onSubmit)}
+                type="button"
+                className="max-w-[150px]"
+                disabled={isLoading}
+              >
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4" /> Updating
@@ -569,7 +574,12 @@ const AddRoomForm = ({ hotel, room, handleDialogueOpen }: AddRoomFormProps) => {
                 )}
               </Button>
             ) : (
-              <Button onClick={form.handleSubmit(onSubmit)} type="button" className="max-w-[150px]" disabled={isLoading}>
+              <Button
+                onClick={form.handleSubmit(onSubmit)}
+                type="button"
+                className="max-w-[150px]"
+                disabled={isLoading}
+              >
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4" /> Creating

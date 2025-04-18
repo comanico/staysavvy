@@ -12,7 +12,6 @@ import { useToast } from "../ui/use-toast";
 import { Separator } from "../ui/separator";
 import moment from "moment";
 import { Button } from "../ui/button";
-import { redirect } from "next/dist/server/api-utils";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
@@ -125,7 +124,7 @@ const RoomPaymentForm = ({
             console.log("These are the results: ", result);
             axios
               .patch(`/api/booking/${result.paymentIntent.id}`)
-              .then((res) => {
+              .then(() => {
                 toast({
                   variant: "success",
                   description: "🎆 Room Reserved",
@@ -147,7 +146,7 @@ const RoomPaymentForm = ({
             setIsLoading(false);
           }
         });
-    } catch (error) {
+    } catch (error: any) { // eslint-disable-next-line @typescript-eslint/no-explicit-any
       console.log(error);
       setIsLoading(false);
     }

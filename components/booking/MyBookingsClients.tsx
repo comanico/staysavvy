@@ -49,13 +49,13 @@ const MyBookingClient: React.FC<MyBookingClientProps> = ({ booking }) => {
   const { getCountryByCode, getStateByCode } = useLocation();
   const router = useRouter();
   const { toast } = useToast();
+  const { userId } = useAuth();
   const { Hotel, Room } = booking;
 
   if (!Hotel || !Room) return <div>Missing Data..</div>;
 
   const country = getCountryByCode(Hotel.country);
   const state = getStateByCode(Hotel.country, Hotel.state);
-  const { userId } = useAuth();
 
   const startDate = moment(booking.startDate).format("MMMM Do YYYY");
   const endDate = moment(booking.endDate).format("MMMM Do YYYY");
@@ -117,7 +117,7 @@ const MyBookingClient: React.FC<MyBookingClientProps> = ({ booking }) => {
         setPaymentIntentId(data.paymentIntent.id);
         router.push("/book-room");
       })
-      .catch((error: any) => {
+      .catch((error) => {
         console.log(error);
         toast({
           variant: "destructive",

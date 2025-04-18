@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-declare global {
+declare global { // eslint-disable-next-line @typescript-eslint/no-unused-vars
     var prisma: PrismaClient | undefined
 }
 

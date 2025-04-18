@@ -20,7 +20,6 @@ import {
   Loader2,
   MountainSnow,
   Pencil,
-  Plus,
   Ship,
   Trash,
   Trees,
@@ -33,7 +32,7 @@ import {
 } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { usePathname, useRouter } from "next/navigation";
-import { use, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -52,7 +51,6 @@ import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { Checkbox } from "../ui/checkbox";
 import { useAuth } from "@clerk/nextjs";
 import useBookRoom from "@/hooks/useBookRoom";
-import { start } from "repl";
 
 interface RoomCardProps {
   hotel?: Hotel & {
@@ -210,7 +208,7 @@ const RoomCard = ({ hotel, room, bookings = [] }: RoomCardProps) => {
           setPaymentIntentId(data.paymentIntent.id);
           router.push("/book-room");
         })
-        .catch((error: any) => {
+        .catch((error: any) => { // eslint-disable-next-line @typescript-eslint/no-explicit-any
           console.log(error);
           toast({
             variant: "destructive",
@@ -346,7 +344,7 @@ const RoomCard = ({ hotel, room, bookings = [] }: RoomCardProps) => {
           {isHotelDetailsPage ? (
             <div className="flex flex-col gap-6">
               <div>
-                <div className="mb-2">Days you'll be spending here</div>
+                <div className="mb-2">Days you will be spending here</div>
                 <DatePickerWithRange
                   date={date}
                   setDate={setDate}
@@ -361,7 +359,7 @@ const RoomCard = ({ hotel, room, bookings = [] }: RoomCardProps) => {
                   <div className="flex items-center space-x-2">
                     <Checkbox
                       id="breakfast"
-                      onCheckedChange={(value) => setIncludeBreakfast(true)}
+                      onCheckedChange={() => setIncludeBreakfast(true)}
                     />
                     <label htmlFor="breakfast" className="">
                       Include Breakfast
