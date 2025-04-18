@@ -208,7 +208,8 @@ const RoomCard = ({ hotel, room, bookings = [] }: RoomCardProps) => {
           setPaymentIntentId(data.paymentIntent.id);
           router.push("/book-room");
         })
-        .catch((error: any) => { // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .catch((error: any) => {
           console.log(error);
           toast({
             variant: "destructive",

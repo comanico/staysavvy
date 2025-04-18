@@ -217,8 +217,8 @@ const AddHotelForm = ({ hotel }: AddHotelFormProps) => {
         description: "Hotel deleted!",
       });
       router.push("/hotel/new");
-    } catch (error: any) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.log(error);
       toast({
         variant: "destructive",
