@@ -1,15 +1,15 @@
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
+  request: NextRequest,
   { params }: { params: { Id: string } }
 ) {
   try {
     const { userId } = await auth();
-    const bookingParams = await params;
 
-    if (!bookingParams.Id) {
+    if (!params.Id) {
       return new NextResponse("Hotel ID is required", { status: 400 });
     }
 
@@ -22,7 +22,7 @@ export async function GET(
     const bookings = await prismadb.booking.findMany({
       where: {
         paymentStatus: true,
-        roomId: bookingParams.Id,
+        roomId: params.Id,
         endDate: {
           gt: yesterday,
         },
@@ -31,12 +31,13 @@ export async function GET(
 
     return NextResponse.json(bookings);
   } catch (error) {
-    console.log("Error at /api/booking/Id GET", error);
+    console.log("Error at /api/booking/Id GET ", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
 
 export async function PATCH(
+  request: NextRequest,
   { params }: { params: { Id: string } }
 ) {
   try {
@@ -64,6 +65,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
+  request: NextRequest,
   { params }: { params: { Id: string } }
 ) {
   try {
