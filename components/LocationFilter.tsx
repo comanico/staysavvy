@@ -51,6 +51,7 @@ const LocationFilter = () => {
       return router.push("/");
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let currentQuery : any = {};
 
     if (params) {
