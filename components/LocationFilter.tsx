@@ -15,6 +15,8 @@ import { ICity, IState } from "country-state-city";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 
+export const dynamic = "force-dynamic"; // Disable static prerendering
+
 const LocationFilter = () => {
   const router = useRouter();
   const params = useSearchParams();
@@ -94,66 +96,63 @@ const LocationFilter = () => {
   };
 
   return (
-      <Container>
-        <div className="flex gap-2 md:gap-4 items-center justify-center text-sm">
-          <div>
-            <Select
-              onValueChange={(value) => setCountry(value)}
-              value={country}
-            >
-              <SelectTrigger className="bg-background">
-                <SelectValue placeholder="Country" />
-              </SelectTrigger>
-              <SelectContent>
-                {countries.map((country) => {
+    <Container>
+      <div className="flex gap-2 md:gap-4 items-center justify-center text-sm">
+        <div>
+          <Select onValueChange={(value) => setCountry(value)} value={country}>
+            <SelectTrigger className="bg-background">
+              <SelectValue placeholder="Country" />
+            </SelectTrigger>
+            <SelectContent>
+              {countries.map((country) => {
+                return (
+                  <SelectItem key={country.isoCode} value={country.isoCode}>
+                    {country.name}
+                  </SelectItem>
+                );
+              })}
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <Select onValueChange={(value) => setState(value)} value={state}>
+            <SelectTrigger className="bg-background">
+              <SelectValue placeholder="State" />
+            </SelectTrigger>
+            <SelectContent>
+              {states.length > 0 &&
+                states.map((state) => {
                   return (
-                    <SelectItem key={country.isoCode} value={country.isoCode}>
-                      {country.name}
+                    <SelectItem key={state.isoCode} value={state.isoCode}>
+                      {state.name}
                     </SelectItem>
                   );
                 })}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Select onValueChange={(value) => setState(value)} value={state}>
-              <SelectTrigger className="bg-background">
-                <SelectValue placeholder="State" />
-              </SelectTrigger>
-              <SelectContent>
-                {states.length > 0 &&
-                  states.map((state) => {
-                    return (
-                      <SelectItem key={state.isoCode} value={state.isoCode}>
-                        {state.name}
-                      </SelectItem>
-                    );
-                  })}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Select onValueChange={(value) => setCity(value)} value={city}>
-              <SelectTrigger className="bg-background">
-                <SelectValue placeholder="City" />
-              </SelectTrigger>
-              <SelectContent>
-                {cities.length > 0 &&
-                  cities.map((city) => {
-                    return (
-                      <SelectItem key={city.name} value={city.name}>
-                        {city.name}
-                      </SelectItem>
-                    );
-                  })}
-              </SelectContent>
-            </Select>
-          </div>
-          <Button onClick={() => handleClear()} variant="outline">
-            Clear Filters
-          </Button>
+            </SelectContent>
+          </Select>
         </div>
-      </Container>
+        <div>
+          <Select onValueChange={(value) => setCity(value)} value={city}>
+            <SelectTrigger className="bg-background">
+              <SelectValue placeholder="City" />
+            </SelectTrigger>
+            <SelectContent>
+              {cities.length > 0 &&
+                cities.map((city) => {
+                  return (
+                    <SelectItem key={city.name} value={city.name}>
+                      {city.name}
+                    </SelectItem>
+                  );
+                })}
+            </SelectContent>
+          </Select>
+        </div>
+        <Button onClick={() => handleClear()} variant="outline">
+          Clear Filters
+        </Button>
+      </div>
+    </Container>
   );
 };
 
