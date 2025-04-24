@@ -2,6 +2,8 @@ import { getBookingsByHotelOwnerId } from "@/actions/getBookingsByHotelOwnerId";
 import { getBookingsByUserId } from "@/actions/getBookingsByUserId";
 import MyBookingClient from "@/components/booking/MyBookingsClients";
 
+export const dynamic = "force-dynamic"; // Render dynamically at request time
+
 const MyBookings = async () => {
   const bookingsFromVisitors = await getBookingsByHotelOwnerId();
   const bookingsIHaveMade = await getBookingsByUserId();
