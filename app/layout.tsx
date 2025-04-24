@@ -32,9 +32,7 @@ export default function RootLayout({
             <Toaster />
             <main className="flx flex-col min-h-screen bg-secondary">
               <NavBar />
-              <Suspense>
-                <LocationFilter />
-              </Suspense>
+              <LocationFilter />
               <section className="flex-grow">
                 <Container>{children}</Container>
               </section>

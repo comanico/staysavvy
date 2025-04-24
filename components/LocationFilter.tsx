@@ -1,7 +1,7 @@
 "use client";
 
 import qs from "query-string";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Container from "./Container";
 import {
   Select,
@@ -52,7 +52,7 @@ const LocationFilter = () => {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let currentQuery : any = {};
+    let currentQuery: any = {};
 
     if (params) {
       currentQuery = qs.parse(params.toString());
@@ -94,63 +94,68 @@ const LocationFilter = () => {
   };
 
   return (
-    <Container>
-      <div className="flex gap-2 md:gap-4 items-center justify-center text-sm">
-        <div>
-          <Select onValueChange={(value) => setCountry(value)} value={country}>
-            <SelectTrigger className="bg-background">
-              <SelectValue placeholder="Country" />
-            </SelectTrigger>
-            <SelectContent>
-              {countries.map((country) => {
-                return (
-                  <SelectItem key={country.isoCode} value={country.isoCode}>
-                    {country.name}
-                  </SelectItem>
-                );
-              })}
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Select onValueChange={(value) => setState(value)} value={state}>
-            <SelectTrigger className="bg-background">
-              <SelectValue placeholder="State" />
-            </SelectTrigger>
-            <SelectContent>
-              {states.length > 0 &&
-                states.map((state) => {
+    <Suspense>
+      <Container>
+        <div className="flex gap-2 md:gap-4 items-center justify-center text-sm">
+          <div>
+            <Select
+              onValueChange={(value) => setCountry(value)}
+              value={country}
+            >
+              <SelectTrigger className="bg-background">
+                <SelectValue placeholder="Country" />
+              </SelectTrigger>
+              <SelectContent>
+                {countries.map((country) => {
                   return (
-                    <SelectItem key={state.isoCode} value={state.isoCode}>
-                      {state.name}
+                    <SelectItem key={country.isoCode} value={country.isoCode}>
+                      {country.name}
                     </SelectItem>
                   );
                 })}
-            </SelectContent>
-          </Select>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Select onValueChange={(value) => setState(value)} value={state}>
+              <SelectTrigger className="bg-background">
+                <SelectValue placeholder="State" />
+              </SelectTrigger>
+              <SelectContent>
+                {states.length > 0 &&
+                  states.map((state) => {
+                    return (
+                      <SelectItem key={state.isoCode} value={state.isoCode}>
+                        {state.name}
+                      </SelectItem>
+                    );
+                  })}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Select onValueChange={(value) => setCity(value)} value={city}>
+              <SelectTrigger className="bg-background">
+                <SelectValue placeholder="City" />
+              </SelectTrigger>
+              <SelectContent>
+                {cities.length > 0 &&
+                  cities.map((city) => {
+                    return (
+                      <SelectItem key={city.name} value={city.name}>
+                        {city.name}
+                      </SelectItem>
+                    );
+                  })}
+              </SelectContent>
+            </Select>
+          </div>
+          <Button onClick={() => handleClear()} variant="outline">
+            Clear Filters
+          </Button>
         </div>
-        <div>
-          <Select onValueChange={(value) => setCity(value)} value={city}>
-            <SelectTrigger className="bg-background">
-              <SelectValue placeholder="City" />
-            </SelectTrigger>
-            <SelectContent>
-              {cities.length > 0 &&
-                cities.map((city) => {
-                  return (
-                    <SelectItem key={city.name} value={city.name}>
-                      {city.name}
-                    </SelectItem>
-                  );
-                })}
-            </SelectContent>
-          </Select>
-        </div>
-        <Button onClick={() => handleClear()} variant="outline">
-          Clear Filters
-        </Button>
-      </div>
-    </Container>
+      </Container>
+    </Suspense>
   );
 };
 
