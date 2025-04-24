@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import SearchInput from "../SearchInput";
 import { ModeToggle } from "../theme-toggle";
 import { NavMenu } from "./NavMenu";
+import { Suspense } from "react";
 
 function NavBar() {
   const router = useRouter();
@@ -24,7 +25,9 @@ function NavBar() {
             <Image src="/logo.svg" alt="StaySavvy" width="30" height="30" />
             <div className="font-bold-text-xl">StaySavvy</div>
           </div>
-          <SearchInput />
+          <Suspense>
+            <SearchInput />
+          </Suspense>
           <div className="flex gap-3 items-center">
             <div>
               <ModeToggle />

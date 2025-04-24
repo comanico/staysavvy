@@ -1,6 +1,5 @@
 import { getHotels } from "@/actions/getHotels";
 import HotelList from "@/components/hotel/HotelList";
-import { Suspense } from "react";
 
 interface HomeProps {
   searchParams: Promise<{
@@ -17,10 +16,8 @@ export default async function Home({ searchParams }: HomeProps) {
   if (!hotels) return <div>No hotels found...</div>;
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
       <div>
         <HotelList hotels={hotels} />
       </div>
-    </Suspense>
   );
 }
