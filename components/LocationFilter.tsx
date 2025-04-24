@@ -1,7 +1,7 @@
 "use client";
 
 import qs from "query-string";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "./Container";
 import {
   Select,
@@ -94,7 +94,6 @@ const LocationFilter = () => {
   };
 
   return (
-    <Suspense>
       <Container>
         <div className="flex gap-2 md:gap-4 items-center justify-center text-sm">
           <div>
@@ -155,7 +154,6 @@ const LocationFilter = () => {
           </Button>
         </div>
       </Container>
-    </Suspense>
   );
 };
 
