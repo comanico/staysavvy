@@ -3,9 +3,9 @@ import { getHotelById } from "@/actions/getHotelById";
 import HotelDetailsClient from "@/components/hotel/HotelDetailsClient";
 
 interface HotelDetailsProps {
-  params: {
+  params: Promise<{
     hotelId: string;
-  };
+  }>;
 }
 
 const HotelDetails = async ({ params }: HotelDetailsProps) => {
@@ -17,7 +17,7 @@ const HotelDetails = async ({ params }: HotelDetailsProps) => {
 
   return (
     <div>
-        <HotelDetailsClient hotel={hotel} bookings={bookings}/>
+      <HotelDetailsClient hotel={hotel} bookings={bookings} />
     </div>
   );
 };
