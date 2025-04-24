@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { hotelId: string } }
+  { params }: { params: Promise<{ hotelId: string }> } 
 ) {
   try {
     const body = await req.json();
@@ -33,13 +33,13 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { hotelId: string } }
+  { params }: { params: Promise<{ hotelId: string }> }
 ) {
   try {
     const { userId } = await auth();
-    const hotelId = await params.hotelId;
+    const hotelParams = await params;
 
-    if (!hotelId) {
+    if (!hotelParams.hotelId) {
       return new NextResponse("Hotel ID is required", { status: 400 });
     }
 
@@ -48,7 +48,7 @@ export async function DELETE(
     }
 
     const hotel = await prismadb.hotel.delete({
-      where: { id: hotelId },
+      where: { id: hotelParams.hotelId },
     });
 
     return NextResponse.json(hotel);
