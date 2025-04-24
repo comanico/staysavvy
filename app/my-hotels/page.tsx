@@ -1,6 +1,8 @@
 import { getHotelsByUserId } from "@/actions/getHotelsByUserId";
 import HotelList from "@/components/hotel/HotelList";
 
+export const dynamic = "force-dynamic"; // Render dynamically at request time
+
 const MyHotels = async () => {
   const hotels = await getHotelsByUserId();
 
