@@ -15,8 +15,6 @@ import { ICity, IState } from "country-state-city";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 
-export const dynamic = "force-dynamic"; // Disable static prerendering
-
 const LocationFilter = () => {
   const router = useRouter();
   const params = useSearchParams();
