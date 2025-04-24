@@ -1,6 +1,6 @@
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs/server";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest,NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
@@ -8,8 +8,9 @@ export async function GET(
 ) {
   try {
     const { userId } = await auth();
+    const bookingParams = await params;
 
-    if (!params.Id) {
+    if (!bookingParams.Id) {
       return new NextResponse("Hotel ID is required", { status: 400 });
     }
 
@@ -22,7 +23,7 @@ export async function GET(
     const bookings = await prismadb.booking.findMany({
       where: {
         paymentStatus: true,
-        roomId: params.Id,
+        roomId: bookingParams.Id,
         endDate: {
           gt: yesterday,
         },
@@ -31,7 +32,7 @@ export async function GET(
 
     return NextResponse.json(bookings);
   } catch (error) {
-    console.log("Error at /api/booking/Id GET ", error);
+    console.log("Error at /api/booking/Id GET", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
