@@ -51,7 +51,7 @@ const LocationFilter = () => {
       return router.push("/");
     }
 
-    let currentQuery = {};
+    let currentQuery : any = {};
 
     if (params) {
       currentQuery = qs.parse(params.toString());
