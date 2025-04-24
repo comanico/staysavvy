@@ -6,7 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Container from "@/components/Container";
 import { Toaster } from "@/components/ui/toaster";
 import LocationFilter from "@/components/LocationFilter";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "StaySavvy",
