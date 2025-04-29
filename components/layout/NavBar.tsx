@@ -23,7 +23,7 @@ function NavBar() {
             onClick={() => router.push("/")}
           >
             <Image src="/logo.svg" alt="StaySavvy" width="30" height="30" />
-            <div className="font-bold-text-xl">StaySavvy</div>
+            <div className="font-bold-text-xl"> Neva Apartments </div>
           </div>
           <Suspense>
             <SearchInput />

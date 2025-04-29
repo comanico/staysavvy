@@ -9,8 +9,8 @@ import LocationFilter from "@/components/LocationFilter";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "StaySavvy",
-  description: "Book your next vacation with StaySavvy",
+  title: "Neva Apartments | Book your next vacation",
+  description: "Book your next vacation with Neva Aprtments",
   icons: { icon: "/logo.svg" },
 };
 
