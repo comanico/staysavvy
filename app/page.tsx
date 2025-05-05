@@ -1,4 +1,3 @@
-"use client";
 import { getHotels } from "@/actions/getHotels";
 import HotelList from "@/components/hotel/HotelList";
 import ReactCookieBot from "react-cookiebot";
