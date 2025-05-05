@@ -7,6 +7,7 @@ import Container from "@/components/Container";
 import { Toaster } from "@/components/ui/toaster";
 import LocationFilter from "@/components/LocationFilter";
 import { Suspense } from "react";
+import CookieBot from "@/components/cookiebot/CookieBot";
 
 export const metadata: Metadata = {
   title: "Neva Apartments | Book your next vacation",
@@ -23,6 +24,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body>
+          <CookieBot />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

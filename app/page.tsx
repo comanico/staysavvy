@@ -1,5 +1,4 @@
 import { getHotels } from "@/actions/getHotels";
-import CookieBot from "@/components/cookiebot/CookieBot";
 import HotelList from "@/components/hotel/HotelList";
 
 interface HomeProps {
@@ -19,7 +18,6 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <div>
       <HotelList hotels={hotels} />
-      <CookieBot />
     </div>
   );
 }
