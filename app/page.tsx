@@ -1,6 +1,6 @@
 import { getHotels } from "@/actions/getHotels";
+import CookieBot from "@/components/cookiebot/CookieBot";
 import HotelList from "@/components/hotel/HotelList";
-import ReactCookieBot from "react-cookiebot";
 
 interface HomeProps {
   searchParams: Promise<{
@@ -18,11 +18,8 @@ export default async function Home({ searchParams }: HomeProps) {
 
   return (
     <div>
-      <ReactCookieBot
-        domainGroupId={process.env.COOKIEBOT_CBID}
-        language="en"
-      />
       <HotelList hotels={hotels} />
+      <CookieBot />
     </div>
   );
 }
