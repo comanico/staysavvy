@@ -7,7 +7,7 @@ import Container from "@/components/Container";
 import { Toaster } from "@/components/ui/toaster";
 import LocationFilter from "@/components/LocationFilter";
 import { Suspense } from "react";
-import CookieBot from "@/components/cookiebot/CookieBot";
+import CookieConsentWrapper from "@/components/CookieConsentWrapper";
 
 export const metadata: Metadata = {
   title: "Neva Apartments | Book your next vacation",
@@ -15,16 +15,19 @@ export const metadata: Metadata = {
   icons: { icon: "/logo.svg" },
 };
 
+console.log("CLERK_SECRET_KEY at runtime:", process.env.CLERK_SECRET_KEY);
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    >
       <html lang="en" suppressHydrationWarning>
         <body>
-          <CookieBot />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -42,6 +45,7 @@ export default function RootLayout({
               </section>
             </main>
           </ThemeProvider>
+          <CookieConsentWrapper />
         </body>
       </html>
     </ClerkProvider>
