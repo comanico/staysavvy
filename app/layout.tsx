@@ -7,8 +7,9 @@ import Container from "@/components/Container";
 import { Toaster } from "@/components/ui/toaster";
 import LocationFilter from "@/components/LocationFilter";
 import { Suspense } from "react";
-import CookieConsentWrapper from "@/components/CookieConsentWrapper";
-import AnalyticsProvider from "@/components/AnalyticsProvider";
+import CookieConsentWrapper from "@/components/cookies/CookieConsentWrapper";
+import AnalyticsProvider from "@/components/cookies/AnalyticsProvider";
+import FooterSection from "@/components/layout/FooterSection";
 
 export const metadata: Metadata = {
   title: "Neva Apartments | Book your next vacation",
@@ -46,6 +47,7 @@ export default function RootLayout({
           </ThemeProvider>
           <AnalyticsProvider />
           <CookieConsentWrapper />
+          <FooterSection />
         </body>
       </html>
     </ClerkProvider>
