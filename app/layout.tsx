@@ -8,14 +8,13 @@ import { Toaster } from "@/components/ui/toaster";
 import LocationFilter from "@/components/LocationFilter";
 import { Suspense } from "react";
 import CookieConsentWrapper from "@/components/CookieConsentWrapper";
+import AnalyticsProvider from "@/components/AnalyticsProvider";
 
 export const metadata: Metadata = {
   title: "Neva Apartments | Book your next vacation",
   description: "Book your next vacation with Neva Aprtments",
   icons: { icon: "/logo.svg" },
 };
-
-console.log("CLERK_SECRET_KEY at runtime:", process.env.CLERK_SECRET_KEY);
 
 export default function RootLayout({
   children,
@@ -45,6 +44,7 @@ export default function RootLayout({
               </section>
             </main>
           </ThemeProvider>
+          <AnalyticsProvider />
           <CookieConsentWrapper />
         </body>
       </html>
