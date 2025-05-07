@@ -1,6 +1,5 @@
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Footer, FooterBottom } from "@/components/ui/footer";
-import LaunchUI from "@/components/logos/launch-ui";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import ManageCookies from "../cookies/ManageCookies";
@@ -26,8 +25,8 @@ interface FooterProps {
 }
 
 function FooterSection({
-  logo = <LaunchUI />,
-  name = "Launch UI",
+  logo = "Neva Apartments",
+  name = "Neva Apartments",
   columns = [
     {
       title: "Product",
