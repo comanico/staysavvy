@@ -99,3 +99,12 @@ model Booking {
   @@index([hotelId])
   @@index([roomId])
 }
+
+model CookieConsent { 
+  id String @id @default(uuid()) 
+  necessary Boolean @default(true) 
+  analytics Boolean @default(false) 
+  marketing Boolean @default(false) 
+  timestamp DateTime 
+  ip String? // Optional anonymized IP 
+  } 

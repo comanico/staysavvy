@@ -416,7 +416,6 @@ const AddRoomForm = ({ hotel, room, handleDialogueOpen }: AddRoomFormProps) => {
                           endpoint="imageUploader"
                           onClientUploadComplete={(res) => {
                             // Do something with the response
-                            console.log("Files: ", res);
                             setImage(res[0].url);
                             toast({
                               variant: "success",
