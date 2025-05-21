@@ -5,7 +5,6 @@ import { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import Container from "@/components/Container";
 import { Toaster } from "@/components/ui/toaster";
-import LocationFilter from "@/components/LocationFilter";
 import { Suspense } from "react";
 import CookieConsentWrapper from "@/components/cookies/CookieConsentWrapper";
 import AnalyticsProvider from "@/components/cookies/AnalyticsProvider";
@@ -38,7 +37,6 @@ export default function RootLayout({
             <main className="flx flex-col min-h-screen bg-secondary">
               <NavBar />
               <Suspense fallback={<div>Loading...</div>}>
-                <LocationFilter />
               </Suspense>
               <section className="flex-grow">
                 <Container>{children}</Container>

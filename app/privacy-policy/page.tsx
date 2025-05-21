@@ -28,15 +28,14 @@ const PrivacyPolicy: React.FC = () => {
           You can manage your cookie preferences via our cookie banner. For more
           details or to exercise your GDPR rights, contact{" "}
           <a
-            href="mailto:gdpr@yourhotel.com"
+            href="mailto:gdpr@neva-apartments.org"
             className="text-blue-600 underline"
           >
-            gdpr@yourhotel.com
+            gdpr@neva-apartments.org
           </a>
           .
         </p>
       </section>
-      {/* Add other Privacy Policy sections */}
     </div>
   );
 };

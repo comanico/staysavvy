@@ -8,6 +8,7 @@ export const config = {
     '/',
     '/hotel-details/:id',
     '/api/uploadthing',
+    '/privacy-policy',
     // Always run for other API routes
     '/(api|trpc)(.*)',
     // Skip Next.js internals and all static files
