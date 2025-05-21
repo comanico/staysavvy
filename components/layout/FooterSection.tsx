@@ -1,5 +1,4 @@
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import { Footer, FooterBottom } from "@/components/ui/footer";
+import { FooterBottom } from "@/components/ui/footer";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import ManageCookies from "../cookies/ManageCookies";
@@ -25,39 +24,11 @@ interface FooterProps {
 }
 
 function FooterSection({
-  logo = "Neva Apartments",
-  name = "Neva Apartments",
-  columns = [
-    {
-      title: "Product",
-      links: [
-        { text: "Changelog", href: "#" },
-        { text: "Documentation", href: "#" },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { text: "About", href: "#" },
-        { text: "Careers", href: "#" },
-        { text: "Blog", href: "#" },
-      ],
-    },
-    {
-      title: "Contact",
-      links: [
-        { text: "Discord", href: "#" },
-        { text: "Twitter", href: "#" },
-        { text: "Github", href: "#" },
-      ],
-    },
-  ],
   copyright = "© 2025 Neva Partners. All rights reserved",
   policies = [
     { text: "Privacy Policy", href: "/privacy-policy" },
     { text: "Terms of Service", href: "#" },
   ],
-  showModeToggle = true,
   className,
 }: FooterProps) {
   return (
